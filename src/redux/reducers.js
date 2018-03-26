@@ -1,14 +1,17 @@
 
 import { createForms } from "react-redux-form";
 import { combineReducers } from "redux";
+
 import { loginReducer } from "../login";
-import { productReducer } from "../product";
+import { storeReducer } from "../store";
 import { cartReducer } from "../cart";
+import { orderReducer } from "../order";
 
 export const rootReducer = combineReducers({ 
     login: loginReducer,
-    menu: productReducer,
+    menu: storeReducer,
     cart:cartReducer,
+    orders: orderReducer,
     ...createForms({
       credentials: {
         username: "",

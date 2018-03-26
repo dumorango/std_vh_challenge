@@ -29,4 +29,4 @@ export const LoginForm = props =>
             />        
             <Button>Login</Button>
         </Form>    
-    </ Card>
+    </ Card>;
