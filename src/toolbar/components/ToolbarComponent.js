@@ -8,9 +8,7 @@ import {
     ToolbarIcon
   } from "rmwc/Toolbar";
 
-import { CartToolbarIcon } from "../../cart/components/CartToolbarIcon";
-  
-export const ToolbarComponent = ({ session, onClickCartIcon, onClickStoreIcon }) => (
+export const ToolbarComponent = ({ session, onClickOrdersIcon, onClickStoreIcon, onClickLogout }) => (
   <Toolbar className="AppToolbar">
     <ToolbarRow>
       <ToolbarSection alignStart={true}>
@@ -18,7 +16,8 @@ export const ToolbarComponent = ({ session, onClickCartIcon, onClickStoreIcon })
         <ToolbarIcon use="home" onClick={onClickStoreIcon} />
       </ToolbarSection>
       <ToolbarSection alignEnd>
-        <CartToolbarIcon onClick={onClickCartIcon}/>
+          <ToolbarIcon use="history" onClick={onClickOrdersIcon}/>
+          <ToolbarIcon use="exit_to_app" onClick={onClickLogout}/>
       </ToolbarSection>
     </ToolbarRow>
   </Toolbar>

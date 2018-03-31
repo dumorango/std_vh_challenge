@@ -3,32 +3,34 @@ import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import {cartActions} from "../cart";
 import {ToolbarComponent} from "./components";
 import { push } from 'react-router-redux';
+import {Routes} from "../App";
+import {loginActions} from "../login";
 
 class Toolbar extends Component {
     componentWillMount() {
 
     }
     render() {
-        const { cart, goToCart, goToStores } = this.props;
+        const { goToOrders, goToStores, logout } = this.props;
         return <ToolbarComponent
-            cart={cart}
-            onClickCartIcon={goToCart}
+            onClickOrdersIcon={goToOrders}
             onClickStoreIcon={goToStores}
+            onClickLogout={logout}
         />;
     }
 }
 
 const mapStateToProps = (state) => ({
-    cart: state.cart
+    session: state.session
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
     {
-        goToCart: cartActions.goToCart,
-        goToStores: () => dispatch(push('/stores'))
+        goToOrders: () => push(Routes.ORDERS),
+        goToStores: () => push(Routes.STORES),
+        logout: loginActions.logout
     },
     dispatch
 );
