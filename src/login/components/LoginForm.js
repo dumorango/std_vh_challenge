@@ -8,15 +8,15 @@ import {
     Button
  } from 'rmwc/Button';
 
-import { TextFieldControl } from '../commons/TextFieldControl';
+import { TextFieldControl } from '../../commons/TextFieldControl';
 
 export const MODEL = "credentials";
 
-export const LoginForm = props =>
-    <Card style={{width: '15rem'}}>
+export const LoginForm = ({ onSubmit }) =>
+    <Card style={{width: '20rem', padding: '1rem'}}>
         <h2> Login </h2>
         <Form model={MODEL} 
-            onSubmit={props.onSubmit}>
+            onSubmit={onSubmit}>
             <Control.input
                 type="email"
                 model=".email"

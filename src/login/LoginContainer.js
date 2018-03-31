@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { LoginForm, MODEL } from './LoginForm';
+import { LoginForm, MODEL } from './components';
 import { loginActions } from './LoginActions';
 
 const Login = props => <LoginForm onSubmit={props.login}/>

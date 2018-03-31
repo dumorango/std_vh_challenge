@@ -10,7 +10,7 @@ import {cartActions} from "../cart";
 
 class Product extends Component {
     componentWillMount() {
-        this.props.getAllProducts(this.props.match.params.storeId);
+        this.props.getAllProducts(this.props.storeId);
     }
     render() {
         const { products = [] } = this.props;

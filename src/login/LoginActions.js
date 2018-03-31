@@ -13,7 +13,8 @@ export const loginActions = {
     type: NEW_SESSION,
     session
   }),
-}
+  logout: () => ({ type: LOGOUT }),
+};
 
 async function logInSession(credentials, dispatch) {
     const session = await login(credentials);
