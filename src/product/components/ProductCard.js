@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import {    
     ListItem,
@@ -6,8 +7,15 @@ import {
     ListItemMeta
   } from 'rmwc/List';
 
-export const ProductCard = ({ product, onClick }) => (
-    <ListItem onClick={() => onClick(product)}>
+import { Product } from '../';
+
+type Props = {
+    product: Product,
+    onClickItem: (product: Product) => any
+};
+
+export const ProductCard = ({ product, onClickItem }: Props) => (
+    <ListItem onClick={() => onClickItem(product)}>
         <ListItemGraphic>restaurant_menu</ListItemGraphic>
         <ListItemText>{product.name}</ListItemText>
         <ListItemMeta>add_shopping_cart</ListItemMeta>

@@ -18,6 +18,5 @@ export const loginActions = {
 
 async function logInSession(credentials, dispatch) {
     const session = await login(credentials);
-    dispatch(push('/stores'));
     dispatch(loginActions.newSession(session.data));      
   }

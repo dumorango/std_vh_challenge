@@ -1,29 +1,32 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import {ToolbarComponent} from "./components";
 import { push } from 'react-router-redux';
-import {Routes} from "../App";
+import {Routes} from "../Routes";
 import {loginActions} from "../login";
 
-class Toolbar extends Component {
-    componentWillMount() {
+type Props = {
+    goToOrders: () => void,
+    goToStores: () => void,
+    logout: () => void,
+    session: string
+}
 
-    }
-    render() {
-        const { goToOrders, goToStores, logout } = this.props;
-        return <ToolbarComponent
+export const ToolbarInnerComponent = ({ session, goToOrders, goToStores, logout }: Props) => (
+        <ToolbarComponent
             onClickOrdersIcon={goToOrders}
             onClickStoreIcon={goToStores}
             onClickLogout={logout}
-        />;
-    }
-}
+            session={session}
+        />
+);
 
 const mapStateToProps = (state) => ({
-    session: state.session
+    session: state.login.session
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(
@@ -35,4 +38,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     dispatch
 );
 
-export const ToolbarContainer = connect(mapStateToProps, mapDispatchToProps)(Toolbar);
+export const ToolbarContainer = connect(mapStateToProps, mapDispatchToProps)(ToolbarInnerComponent);

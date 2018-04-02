@@ -1,4 +1,4 @@
-import {getAllProducts} from "../store/StoreService";
+import { getAllProducts } from "../store/StoreService";
 
 export const PRODUCTS_FETCH_SUCCESS = 'PRODUCTS_FETCH_SUCCESS';
 

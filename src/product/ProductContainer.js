@@ -8,7 +8,7 @@ import { productActions } from ".";
 import { ProductList } from "./components";
 import {cartActions} from "../cart";
 
-class Product extends Component {
+export class ProductComponent extends Component {
     componentWillMount() {
         this.props.getAllProducts(this.props.storeId);
     }
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(
     dispatch
 );
 
-export const ProductContainer = connect(mapStateToProps, mapDispatchToProps)(Product);
+export const ProductContainer = connect(mapStateToProps, mapDispatchToProps)(ProductComponent);

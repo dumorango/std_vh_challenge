@@ -1,13 +1,20 @@
+// @flow
 import React from 'react';
 
 import {ProductCard} from "./ProductCard";
 import {List, Typography} from "rmwc";
+import type {Product} from "../ProductModel";
 
-export const ProductList = ({ products, onClickProduct })  => (
+type Props = {
+    products: Array<Product>,
+    onClickProduct: (product: Product) => any
+};
+
+export const ProductList = ({ products, onClickProduct }: Props)  => (
     <List>
         <Typography use="title">Products</Typography>
-        {products.map((product) => 
-            <ProductCard key={`product-card-${product.id}`} product={product} onClick={onClickProduct} />
+        {products.map((product) =>
+            <ProductCard key={`product-card-${product.id}`} product={product} onClickItem={onClickProduct} />
         )}
     </List>
 );

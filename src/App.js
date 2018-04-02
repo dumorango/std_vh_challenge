@@ -6,16 +6,15 @@ import { Provider } from "react-redux";
 import { Route, Switch } from "react-router";
 import createHistory from "history/createBrowserHistory";
 import {ConnectedRouter, push} from "react-router-redux";
-
 import { PersistGate } from 'redux-persist/integration/react'
-
 import configureStore from './redux/store';
+import * as axios from "axios/index";
 
 import { LoginPage } from './login';
 import { ToolbarContainer } from './toolbar';
 import { StoreContainer, StorePage } from './store';
 import { OrderContainer } from "./order";
-import * as axios from "axios/index";
+import { Routes } from './Routes';
 
 const history = createHistory();
 
@@ -24,7 +23,7 @@ const { store, persistor } = configureStore(history, {});
 store.subscribe(() => {
     const session = store.getState().login.session;
     session
-        ? axios.defaults.headers.common['Authorization'] = `Bearer ${store.getState().login.session}`
+        ? saveSessionAndGoToStores(session)
         : goToLogin()
 });
 
@@ -32,12 +31,10 @@ store.subscribe(() => {
 const goToLogin = () =>
     history.location.pathname !== Routes.LOGIN && store.dispatch(push(Routes.LOGIN));
 
-export const Routes = {
-    LOGIN: "/login",
-    STORES: "/stores",
-    STORE: "/stores/:storeId",
-    ORDERS: "/orders"
-};
+const saveSessionAndGoToStores = (session) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${store.getState().login.session}`
+    history.location.pathname === Routes.LOGIN && store.dispatch(push(Routes.STORES));
+}
 
 class App extends Component {
   render() {
